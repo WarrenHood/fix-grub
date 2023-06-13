@@ -31,5 +31,5 @@ Then execute this script with
 ./fix-grub
 ```
 
-It is assumed that your OS and EFI partitions aren't mounted, and that you execute this from an Arch live cd. 
+It is assumed that your OS and EFI partitions aren't mounted, and that you execute this as root from an Arch live cd. 
 The `arch-install-scripts` package should also be installed (it usually is) in your live iso.
