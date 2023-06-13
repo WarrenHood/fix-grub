@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Edit these partitions before running the script
+OS_PARTITION=/dev/nvme0n1p5
+EFI_PARTITION=/dev/nvme0n1p2
+
+# This assumes your EFI partition is at /boot. Change this if yours isn't usually there for some reason
+BOOT_DIR=boot
+
+
+if [[ $EUID != 0 ]]; then
+    echo "This script must be run as root."
+    exit
+fi
+
+if ! command -v arch-chroot &> /dev/null; then
+    echo "The arch-chroot command seems to be missing. Ensure that the arch-install-scripts package is installed."
+    exit
+fi
+
+if grep -q $OS_PARTITION /proc/mounts; then
+    echo "OS Partition ($OS_PARTITION) is already mounted. Unmount it before running this script"
+    exit
+fi
+
+if grep -q $EFI_PARTITION /proc/mounts; then
+    echo "EFI Partition ($EFI_PARTITION) is already mounted. Unmount it before running this script"
+    exit
+fi
+
+# Mount partitions in the right places, and reinstall grub
+echo "Mounting partitions..."
+
+mount $OS_PARTITION /mnt
+mount $EFI_PARTITION /mnt/$BOOT_DIR
+
+echo "Executing grub-install in chroot..."
+arch-chroot /mnt grub-install --target=x86_x64-efi --efi-directory=$BOOT_DIR
+echo "Done. You may need to move GRUB/arch to the top of the list in your BIOS settings for your OS bootloader"
