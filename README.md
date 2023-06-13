@@ -3,7 +3,11 @@
 ## What is this?
 
 Sometimes you need to dual-boot to play games on Windows. And sometimes Windows decides that you no longer need your linux bootloader.
-This script can be placed on a flash drive or on an Arch live cd you build with Archiso.
+This script can be placed on a flash drive or on an Arch live cd you build with Archiso. The idea is that you can simply rerun this script
+whenever your bootloader gets deleted to quickly reinstall grub without trying to remember which partitions everything is on. 
+
+Just edit the script once to set the partitions correctly, forget about it, and then rerun it whenever your bootloader gets deleted.
+(Don't forget to update the script if your partitions change)
 
 Before using this script, ensure that you are aware of what's what with your partitions.
 
