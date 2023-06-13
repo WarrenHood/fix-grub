@@ -2,7 +2,7 @@
 
 ## What is this?
 
-Sometimes you need to dual-boot to play games on Windows. And sometiems Windows decides that you no longer need your linux bootloader.
+Sometimes you need to dual-boot to play games on Windows. And sometimes Windows decides that you no longer need your linux bootloader.
 This script can be placed on a flash drive or on an Arch live cd you build with Archiso.
 
 Before using this script, ensure that you are aware of what's what with your partitions.
